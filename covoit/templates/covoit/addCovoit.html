@@ -1,0 +1,32 @@
+{% extends "connexion/base.html" %}
+{% load crispy_forms_tags %}
+{% block covoit %}
+    active
+{% endblock covoit %}
+{% block content %}
+    <form action="{% url 'addcovoit' %}" method="post">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Créer un covoiturage </legend>
+            <div class="row">
+                <div class="col">
+                    {{ form.départ|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-4">
+                    {{ form.placedispo|as_crispy_field }}
+                </div>
+                <div class="col col-sm-4">
+                    {{ form.heure|as_crispy_field }}
+                </div>
+                 <div class="col col-sm-4">
+                    {{ form.minute|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Enregistrer</button>
+            </div>
+    </form>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "connexion/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block calendrier %}
+    active
+{% endblock calendrier %}
+{% block content %}
+  <form class="mb-5" id="form" method="post" action="{% url 'calendrier' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+  </form>
+  {% for row in jour_num %}
+    <div class="row">
+      <div class="col">
+        {{ row.equipeA }}
+      </div>
+      <div class="col">
+        {{ row.equipeB }}
+      </div>
+      <div class="col-md-1">
+        {% if row.goalA == None %}
+        {% else %}
+          {{ row.goalA }}
+        {% endif %}
+      </div>
+      <div class="col-md-1">
+        -
+      </div>
+      <div class="col-md-1">
+        {% if row.goalB == None %}
+        {% else %}
+          {{ row.goalB }}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock content %}
+{% block js %}
+<script src="{% static 'classement/calendrier.js' %}"></script>
+{% endblock js %}

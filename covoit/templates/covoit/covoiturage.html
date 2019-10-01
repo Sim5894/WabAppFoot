@@ -1,0 +1,24 @@
+{% extends "connexion/base.html" %}
+{% load crispy_forms_tags %}
+{% block covoit %}
+    active
+{% endblock covoit %}
+{% block content %}
+    <a class="btn btn-outline-info" href="{% url 'addcovoit' %}" role="button">Enregistrez un covoiturage</a>
+    {% for row in voiture %}
+        <ul class="list-group mb-5 text-center w-25">
+            <li class="list-group-item">{{ row.id }}</li>
+            <li class="list-group-item">Lieu : {{ row.départ }}</li>
+            <li class="list-group-item">{{ row.placelibre }} places restantes</li>
+            <li class="list-group-item">Départ à {{ row.heure }}H{% if row.minute == 0 %}{{ row.minute }}{{ row.minute }}{% else %}{{ row.minute }}{% endif %}</li>
+            <form action="{% url 'covoit' %}" method="post" id="systemForm">
+                {% csrf_token %}
+                 <input type="number" name="id" value="{{ row.id }}"  hidden>
+                 <input type="number" name="uid" value="{{ user.id }}"  hidden>
+                {{ form|crispy }}
+                <button class="btn btn-outline-info" type="submit">Enregistrer</button>
+            </form>
+        </ul>
+    {% endfor %}
+{% endblock content %}
+

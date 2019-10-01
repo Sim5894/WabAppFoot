@@ -1,0 +1,20 @@
+{% extends "connexion/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="post" action="{% url 'selection' %}">
+        {% csrf_token %}
+        <input type="number" name="journee" placeholder="Journée numéro" class="mb-4">
+        {% for row in joueur %}
+            <div class="row">
+                <div class="col mb-4">
+                    {{ row.prenom }} {{ row.nom }}
+                </div>
+                <div class="col">
+                    <input type="checkbox" value="{{ row.id }}" name="{{ row.id }}">
+                </div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-outline-info" type="submit">Sélectionner</button>
+    </form>
+{% endblock content %}
+

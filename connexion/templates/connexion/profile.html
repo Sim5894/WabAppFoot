@@ -1,0 +1,47 @@
+{% extends "connexion/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.nom }} {{user.prenom}}</h2>
+          <p class="account-heading">{{ user.email }}</p>
+        </div>
+      </div>
+      <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> info du profil </legend>
+                {{ u_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sauvegarder</button>
+            </div>
+        </form>
+    </div>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Entrainements</th>
+          <th>Matchs joués</th>
+          <th>Titularisations</th>
+          <th><img src="{% static 'match/but.jpg' %}" alt="but" style="height:25px;width:25px;"></th>
+          <th><img src="{% static 'match/jaune.jpg' %}" alt="jaune" style="height:25px;width:25px;"></th>
+          <th><img src="{% static 'match/rouge.jpg' %}" alt="rouge" style="height:25px;width:25px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ user.joueur.entrainements }}</td>
+          <td>{{ user.joueur.matchs }}</td>
+          <td> {{ user.joueur.titularisations }}</td>
+          <td>{{ user.joueur.buts }}</td>
+          <td>{{ user.joueur.jaune }}</td>
+          <td>{{ user.joueur.rouge }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock content %}

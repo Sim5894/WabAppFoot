@@ -1,0 +1,81 @@
+{% extends "connexion/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block calendrier %}
+    active
+{% endblock calendrier %}
+{% block content %}
+     <form id="form" class="mb-5" id="form" method="post" action="{% url 'encode' %}">
+    {% csrf_token %}
+    {{ form1|crispy }}
+  </form>
+    <form id="form2" action="{% url 'encode' %}" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col">
+          {% for row in dataCalendrierj1 %}
+            <div class="row">
+              {{ row.equipeA }}
+            </div>
+            <div class="row">
+              {{ row.equipeB }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col">
+          <div class="row">
+            {{ form2.but_a1|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b1|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a2|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b2|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a3|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b3|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a4|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b4|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a5|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b5|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a6|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b6|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a7|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b7|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_a8|as_crispy_field }}
+          </div>
+          <div class="row">
+            {{ form2.but_b8|as_crispy_field }}
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-outline-info float-right" type="submit">Enregistrer</button>
+    </form>
+{% endblock content%}
+{% block js %}
+<script src="{% static 'classement/calendrier.js' %}"></script>
+{% endblock js %}

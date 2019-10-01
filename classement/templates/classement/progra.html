@@ -1,0 +1,97 @@
+{% extends "connexion/base.html" %}
+{% load crispy_forms_tags %}
+{% block calendrier %}
+    active
+{% endblock calendrier %}
+{% block content %}
+    </select>
+    <form action="{% url 'progra' %}" method="post">
+      {% csrf_token %}
+          <div class="row">
+              {{ form.journee|as_crispy_field }}
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_11|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_12|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_21|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_22|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_31|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_32|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_41|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_42|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_51|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_52|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_61|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_62|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_71|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row mb-5">
+              <div class="col-7">
+                  {{ form.equipe_72|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_81|as_crispy_field }}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-7">
+                  {{ form.equipe_82|as_crispy_field }}
+              </div>
+          </div>
+
+      <button class="btn btn-outline-info float-right" type="submit">Enregistrer</button>
+    </form>
+{% endblock content%}
+

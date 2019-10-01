@@ -1,0 +1,36 @@
+{% extends "connexion/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <form method="post" action="{% url 'finmatch' %}">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th></th>
+                    <th>Sélectionner</th>
+                    <th>Titulaire</th>
+                    <th><img src="{% static 'match/but.jpg' %}" style="width:25px;height:25px"></th>
+                    <th><img src="{% static 'match/jaune.jpg' %}" style="width:25px;height:25px"></th>
+                    <th><img src="{% static 'match/rouge.jpg' %}" style="width:25px;height:25px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in joueur %}
+                    <tr class="text-center">
+                        <td>{{ row.prenom }} {{ row.nom }}</td>
+                        <td><input type="checkbox" value="selec{{ row.id }}" id="{{ row.id }}" name="{{ row.id }}" ></td>
+                        <td><input type="checkbox" value="titu{{ row.id }}" id="titu{{ row.id }}" name="titu{{ row.id }}" disabled></td>
+                        <td><input type="number" name="but{{ row.id }}" value="0" id="but{{ row.id }}" disabled></td>
+                        <td ><input type="number" name="jaune{{ row.id }}" value="0" id="jaune{{ row.id }}" disabled></td>
+                        <td><input type="checkbox" value="rouge{{ row.id }}" id="rouge{{ row.id }}" name="rouge{{ row.id }}" disabled></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-outline-info" type="submit">Sélectionner</button>
+    </form>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'match/finmatch.js' %}"></script>
+{% endblock %}
